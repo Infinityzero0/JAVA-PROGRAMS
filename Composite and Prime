@@ -1,0 +1,90 @@
+//GFG POTD https://practice.geeksforgeeks.org/problems/composite-and-prime0359/1
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class GFG
+{
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(br.readLine().trim());
+        while(T-->0)
+        {
+            String[] S = br.readLine().split(" ");
+            int L = Integer.parseInt(S[0]);
+            int R = Integer.parseInt(S[1]);
+            Solution ob = new Solution();
+            int ans = ob.Count(L, R);
+            System.out.println(ans);
+        }
+    }
+}
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution
+{
+    public int Count(int L, int R)
+    {
+        int prime =0;
+        int comp =0;
+        boolean[] primes = new boolean[R+1];
+        Arrays.fill(primes, true);
+        primes[0]=false;
+        primes[1]=false;
+        for(int i=2;i<R;i++){
+           if(primes[i]){
+               //multiples of i if i prime are composite
+               for(int j=2*i; j<=R; j=j+i){
+                   primes[j]=false;
+               }
+           }
+        }
+        for(int i=L; i<=R; i++){
+            if(primes[i]){
+                prime++;
+            }
+            else{
+                comp++;
+            }
+        }
+        if(L==1)comp--;
+        return comp-prime;
+        
+        
+        
+        
+        // int count1=0,count2=0;
+        // for(int i=L;i<=R;i++){
+        //      if(i==1){
+        //             continue;
+        //         }
+        //     if(isPrime(i)){
+               
+        //         count1++;
+        //     }
+        //     else{
+        //         count2++;
+        //     }
+        // }
+        // return count2-count1;
+    }
+    // public boolean isPrime(int n){
+    //     if(n<=1){
+    //         return false;
+    //     }
+    //     for(int i =2; i<=Math.sqrt(n); i++){
+    //         if(n%i==0){
+    //             return false;
+    //         }
+        
+    //     }
+    //     return true;
+    // }
+}
