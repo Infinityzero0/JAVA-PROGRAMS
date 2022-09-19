@@ -4,6 +4,37 @@ import java.io.*;
 import java.util.*;
 import java.lang.*;
 
+//User function Template for Java
+class Solution{
+    static List<Integer> leftSmaller(int n, int a[])
+    {
+       List<Integer> ans = new ArrayList<>();
+       Stack<Integer> s = new Stack<>();
+       //for(int i=a.length-1; i>=0; i++) for next greatest or smallest element
+       for(int i=0; i<a.length; i++){
+          //check if stack is empty or not and its top element is greater than or equal to a[i]
+         //if true then pop that element
+                                  //s.peek()<=a[i] for previous greate element
+           while(!s.isEmpty() && s.peek()>=a[i]){
+               s.pop();
+           }
+         //if not any element is found 
+           if(s.isEmpty()){
+               ans.add(-1);
+           }
+         //if above all conditions are false then by default top element is smallest
+           else{
+               ans.add(s.peek());
+           }
+         
+           s.push(a[i]);
+       }
+       return ans;     
+        }
+    }
+
+
+
 class GFG{
     public static void main(String args[])throws IOException
     {
@@ -27,34 +58,4 @@ class GFG{
 // } Driver Code Ends
 
 
-//User function Template for Java
-class Solution{
-    static List<Integer> leftSmaller(int n, int a[])
-    {
-       List<Integer> ans = new ArrayList<>();
-       Stack<Integer> s = new Stack<>();
-       
-       for(int i=0; i<a.length; i++){
-          //check if stack is empty or not and its top element is greater than or equal to a[i]
-         //if true then pop that element
-           while(!s.isEmpty() && s.peek()>=a[i]){
-               s.pop();
-           }
-         //if not any element is found 
-           if(s.isEmpty()){
-               ans.add(-1);
-           }
-         //if above all conditions are false then by default top element is smallest
-           else{
-               ans.add(s.peek());
-           }
-         
-           s.push(a[i]);
-       }
-       return ans;
-       
-       
-       
-       
-        }
-    }
+
